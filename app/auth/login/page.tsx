@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import SignupPage from "../signup/page";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -88,7 +89,7 @@ export default function LoginPage() {
         {/* Divider */}
         <div className="mt-6 text-center text-sm text-gray-600">
           New user?{" "}
-          <Link href="/register" className="text-blue-600 hover:underline">
+          <Link href="/auth/signup" className="text-blue-600 hover:underline">
             Sign up
           </Link>
         </div>
