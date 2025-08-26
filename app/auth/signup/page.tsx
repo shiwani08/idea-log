@@ -21,7 +21,7 @@ export default function SignupPage() {
           <input
             type="text"
             placeholder="Full Name"
-            className="w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 pr-3 py-2 text-black border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -31,7 +31,7 @@ export default function SignupPage() {
           <input
             type="email"
             placeholder="Email"
-            className="w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 pr-3 py-2 text-black border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -41,7 +41,7 @@ export default function SignupPage() {
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
-            className="w-full pl-10 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 pr-10 py-2 text-black border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="button"
@@ -58,7 +58,7 @@ export default function SignupPage() {
           <input
             type={showConfirmPassword ? "text" : "password"}
             placeholder="Confirm Password"
-            className="w-full pl-10 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 pr-10 py-2 text-black border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="button"
@@ -75,7 +75,7 @@ export default function SignupPage() {
         </button>
 
         {/* Google Signin */}
-        <button className="w-full border border-gray-300 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100">
+        <button className="w-full border text-black border-black py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100">
           <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"
             alt="Google"
@@ -87,7 +87,7 @@ export default function SignupPage() {
         {/* Already have account */}
         <p className="mt-6 text-center text-gray-600">
           Already have an account?{" "}
-          <Link href="/login" className="text-blue-600 hover:underline">
+          <Link href="/" className="text-blue-600 hover:underline">
             Login
           </Link>
         </p>
