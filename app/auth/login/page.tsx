@@ -15,42 +15,44 @@ export default function LoginPage() {
 
   const togglePassword = () => setShowPassword(!showPassword);
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError(null);
-  setLoading(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
 
-  try {
-    const res = await fetch("https://dummyjson.com/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        password,
-        expiresInMins: 30, // optional
-      }),
-    });
+    try {
+      const res = await fetch("https://dummyjson.com/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password,
+          expiresInMins: 30,
+        }),
+      });
 
-    if (!res.ok) {
-      throw new Error("Login failed. Please check your credentials.");
+      if (!res.ok) {
+        alert("Login not successful");
+        throw new Error("Login failed. Please check your credentials.");
+      }
+
+      const data = await res.json();
+      console.log("Login response:", data);
+
+      // example: show username in console
+      console.log("Logged in user:", data.username);
+
+      // you can store token or user data in state/localStorage
+      localStorage.setItem("accessToken", data.accessToken);
+
+      alert("Logged in successful!!");
+      window.location.href = "/page/home";
+    } catch (err: any) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
-
-    const data = await res.json();
-    console.log("Login response:", data);
-
-    // example: show username in console
-    console.log("Logged in user:", data.username);
-
-    // you can store token or user data in state/localStorage
-    localStorage.setItem("accessTokentoken", data.accessToken);
-
-  } catch (err: any) {
-    setError(err.message || "Something went wrong");
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-900 to-black">
