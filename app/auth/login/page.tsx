@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import SignupPage from "../signup/page";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { PlayCircleOutlined, EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -98,10 +100,11 @@ export default function LoginPage() {
                 onClick={togglePassword}
                 className="absolute inset-y-0 right-3 flex items-center text-gray-500"
               >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showPassword ? <EyeOutlined size={18} /> : <EyeInvisibleOutlined size={18} />}
               </button>
             </div>
           </div>
+
 
           {/* Forgot Password */}
           <div className="text-right">
@@ -121,6 +124,7 @@ export default function LoginPage() {
             Login
           </button>
         </form>
+        {/* <PlayCircleOutlined className="text-black hover:text-gray-800 transition" /> */}
 
         {/* Divider */}
         <div className="mt-6 text-center text-sm text-gray-600">
