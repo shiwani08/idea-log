@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,41 +15,42 @@ export default function LoginPage() {
 
   const togglePassword = () => setShowPassword(!showPassword);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setError(null);
+  setLoading(true);
 
-    try {
-      const res = await fetch("https://dummyjson.com/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
+  try {
+    const res = await fetch("https://dummyjson.com/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        password,
+        expiresInMins: 30, // optional
+      }),
+    });
 
-      if (!res.ok) {
-        throw new Error("Invalid credentials");
-      }
-
-      const data = await res.json();
-      console.log("Login successful:", data);
-
-      // Save token to localStorage/sessionStorage
-      localStorage.setItem("token", data.token);
-
-      // Redirect (for example, to dashboard)
-      window.location.href = "/";
-    } catch (err: any) {
-      setError(err.message || "Something went wrong");
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      throw new Error("Login failed. Please check your credentials.");
     }
-    console.log("Logging in with:", { email, password });
-    // Call your auth API here
-  };
+
+    const data = await res.json();
+    console.log("Login response:", data);
+
+    // example: show username in console
+    console.log("Logged in user:", data.username);
+
+    // you can store token or user data in state/localStorage
+    localStorage.setItem("accessTokentoken", data.accessToken);
+
+  } catch (err: any) {
+    setError(err.message || "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-900 to-black">
@@ -64,15 +65,15 @@ export default function LoginPage() {
           {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Username or Email
+              Username
             </label>
             <input
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 text-gray-400 focus:ring-blue-500"
-              placeholder="Enter your email"
-              required
+              placeholder="Enter your username"
+              required={true}
             />
           </div>
 
