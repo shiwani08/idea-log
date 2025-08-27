@@ -17,8 +17,14 @@ export default async function HomePage() {
       <div className="flex flex-col items-center justify-center"></div>
       <Navbar />
 
+      <div className="flex flex-col items-center justify-center mt-10">
+        <h1 className="text-4xl font-bold text-blue-600">
+          🏠 This is the Home Page
+        </h1>
+      </div>
+
       {/* Main Content */}
-      <div className="flex space-x-4 overflow-x-auto px-4 w-full mt-10 max-w-5xl scrollbar-hide">
+      <div className="flex gap-6 overflow-x-auto px-4 w-full mt-10 mb-10 max-w-5xl pb-6 scrollbar-hide">
         {users.map((user: any) => (
           <FaceCard key={user.id} name={user.firstName + " " + user.lastName} />
         ))}
