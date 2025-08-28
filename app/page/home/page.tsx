@@ -1,15 +1,27 @@
 import Navbar from "../../components/navBar";
-import FaceCard from "@/app/components/faceCards";
+import FaceCard from "../../components/faceCards";
+import Count from "../../components/count";
+// import { useState } from "react";
 
 const getUsers = async () => {
-  const res = await fetch("https://dummyjson.com/users?limit=10");
-  const data = await res.json();
-  return data.users;
+  try {
+    const res = await fetch("https://dummyjson.com/users?limit=10", {
+      next: { revalidate: 0 },
+    });
+    if (!res.ok) throw new Error(`Network response was not ok: ${res.status}`);
+
+    const data = await res.json();
+    return data.users;
+  } catch (error) {
+    console.error("Failed to fetch users:", error);
+    return [];
+  }
 };
 
 export default async function HomePage() {
   const users = await getUsers();
-  console.log(users);
+  // const [count, setCount] = useState(0);
+  // console.log(users);
 
   return (
     <main className="min-h-screen bg-gray-100">
@@ -29,6 +41,20 @@ export default async function HomePage() {
           <FaceCard key={user.id} name={user.firstName + " " + user.lastName} />
         ))}
       </div>
+
+      {/* <button
+        onClick={() => setCount(count + 1)}
+        className="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
+      >
+        Increase
+      </button> */}
+      <Count />
+      {/* <button
+        onClick={() => setCount(count - 1)}
+        className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+      >
+        Decrease
+      </button> */}
     </main>
   );
 }
