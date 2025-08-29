@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-// import { signIn } from '@/auth'/loginUI/page';
 import LoginPage from '@/app/auth/loginUI/page';
  
 export default async function handler(
