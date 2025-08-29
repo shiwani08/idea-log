@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import SignupPage from "../signup/page";
+import SignupPage from "../signupUI/page";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { PlayCircleOutlined, EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -29,7 +29,7 @@ export default function LoginPage() {
         body: JSON.stringify({
           username,
           password,
-          expiresInMins: 30,
+          // expiresInMins: 30,
         }),
       });
 
@@ -48,6 +48,8 @@ export default function LoginPage() {
       localStorage.setItem("accessToken", data.accessToken);
 
       alert("Logged in successful!!");
+
+      // using the local host storage in the browser
       window.location.href = "/page/home";
     } catch (err: any) {
       setError(err.message || "Something went wrong");
