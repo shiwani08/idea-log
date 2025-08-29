@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import type { RootState } from "../redux/store/store";
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "../redux/slices/counterSlice";
+import { increment, decrement, incrementByAmount } from "../redux/slices/counterSlice";
 
 const Count = () => {
   // const [count, setCount] = useState(0);
@@ -17,7 +17,7 @@ const Count = () => {
       </div>
       <div className="flex items-center space-x-2">
         <button
-          onClick={() => dispatch(increment())}
+          onClick={() => dispatch(incrementByAmount(5))}
           className="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
         >
           Increase
