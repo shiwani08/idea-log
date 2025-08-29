@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import ReduxProvider from "./components/reduxProvider";
+import { Provider } from "react-redux";
+import store from "./redux/store/store";
 import React from "react";
 
 const geistSans = Geist({
@@ -31,8 +33,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <React.StrictMode>
-        <AntdRegistry>{children}</AntdRegistry>
-        <ReduxProvider>{children}</ReduxProvider>
+          <ReduxProvider>
+            <AntdRegistry>{children}</AntdRegistry>
+          </ReduxProvider>
         </React.StrictMode>
       </body>
     </html>
