@@ -1,6 +1,7 @@
 import Navbar from "../../components/navBar";
 import FaceCard from "../../components/faceCards";
 import Count from "../../components/count";
+import MyCalendar from "../calendar/page";
 // import { useState } from "react";
 
 const getUsers = async () => {
@@ -43,6 +44,7 @@ export default async function HomePage() {
       </div>
 
       <Count />
+      <MyCalendar />
     
     </main>
   );

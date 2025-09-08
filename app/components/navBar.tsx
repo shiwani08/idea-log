@@ -18,9 +18,9 @@ export default function Navbar() {
           <Link href="/page/about" className="text-gray-700 hover:text-blue-600">
             About
           </Link>
-          {/* <Link href="/contact" className="text-gray-700 hover:text-blue-600">
-            Contact
-          </Link> */}
+          <Link href="/page/calendar" className="text-gray-700 hover:text-blue-600">
+            Calendar
+          </Link>
         </div>
 
         {/* Example button (accessible) */}
