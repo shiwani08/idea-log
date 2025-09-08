@@ -10,7 +10,13 @@ import { FaSearch, FaRegCalendarAlt } from "react-icons/fa";
 import AddEventModal from "./addEventModal";
 
 const locales = { "en-US": enUS };
-const localizer = dateFnsLocalizer({ format, parse, startOfWeek, getDay, locales });
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+});
 
 interface EventType {
   title: string;
@@ -228,9 +234,9 @@ const MyCalendar: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleAddEvent = (evt: EventType) => {
-    setEvents(prev => [...prev, evt]);
+    setEvents((prev) => [...prev, evt]);
   };
-  
+
   React.useEffect(() => {
     localStorage.setItem("calendar-events", JSON.stringify(events));
   }, [events]);
@@ -266,6 +272,10 @@ const MyCalendar: React.FC = () => {
               views={["day", "week", "month"]}
               defaultView="day"
               events={events}
+              formats={{
+                timeGutterFormat: (date, culture, localizer) =>
+                  localizer.format(date, "h a", culture),
+              }}
               components={{
                 toolbar: (props) => (
                   <CustomToolbar
