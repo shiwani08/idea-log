@@ -24,6 +24,12 @@ interface EventType {
   end: Date;
 }
 
+interface TimeSlotWrapperProps {
+  value: Date; // date/time of the slot
+  children: React.ReactNode;
+  setEvents: React.Dispatch<React.SetStateAction<EventType[]>>;
+}
+
 interface ExtendedToolbarProps extends ToolbarProps {
   events: EventType[];
   setEvents: React.Dispatch<React.SetStateAction<EventType[]>>;
@@ -85,6 +91,48 @@ interface ExtendedToolbarProps extends ToolbarProps {
 //     </div>
 //   );
 // };
+
+const TimeSlotWrapper: React.FC<TimeSlotWrapperProps> = ({
+  value,
+  children,
+  setEvents,
+}) => {
+  // Check if this is a main slot (not gutter) by verifying children is a React element
+  const isGridSlot = React.isValidElement(children);
+
+  return (
+    <div style={{ position: "relative", height: "100%" }}>
+      {children}
+      {isGridSlot && (
+        <button
+          onClick={() => {
+            const start = new Date(value);
+            const end = new Date(start.getTime() + 60 * 60 * 1000);
+            setEvents((prev) => [
+              ...prev,
+              { title: "New Event", start, end },
+            ]);
+          }}
+          aria-label="Add event"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "none",
+            border: "none",
+            color: "#444",
+            fontSize: 22,
+            cursor: "pointer",
+            zIndex: 5,
+          }}
+        >
+          +
+        </button>
+      )}
+    </div>
+  );
+};
 
 const CustomToolbar: React.FC<ExtendedToolbarProps> = ({
   label,
@@ -277,6 +325,9 @@ const MyCalendar: React.FC = () => {
                   localizer.format(date, "h a", culture),
               }}
               components={{
+                timeSlotWrapper: (props) => (
+                  <TimeSlotWrapper {...props} setEvents={setEvents} />
+                ),
                 toolbar: (props) => (
                   <CustomToolbar
                     {...props}
