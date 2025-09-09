@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 interface AddEventModalProps {
@@ -16,10 +18,7 @@ const LOCATIONS = [
   "Auckland Downtown, Auckland",
 ];
 
-const WORKSPACES = [
-  "Conference Room #1",
-  "Conference Room #2",
-];
+const WORKSPACES = ["Conference Room #1", "Conference Room #2"];
 
 const AddEventModal: React.FC<AddEventModalProps> = ({ onAdd, onClose }) => {
   const [title, setTitle] = useState("");
@@ -48,10 +47,11 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAdd, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
-      style={{ fontFamily: "inherit" }}
+      className="fixed inset-0 flex items-center justify-center z-50"
+      style={{ fontFamily: "inherit", backgroundColor: "rgba(0,0,0,0.2)" }}
     >
-      <div className="bg-white rounded shadow-md p-6 w-[400px] min-w-[350px] relative">
+      {/* Modal container as flex column */}
+      <div className="bg-white rounded shadow-md p-6 min-w-[350px] w-[550px] flex flex-col max-h-[85vh]">
         {/* Header & Steps */}
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-xl font-semibold">Create Workspace Booking</h2>
@@ -67,36 +67,40 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAdd, onClose }) => {
           <span>3 Payment</span>
         </div>
 
-        {/* Form */}
-        <div>
+        {/* Form content grows to fill space */}
+        <div className="flex-grow overflow-auto">
           <label className="block mb-1 font-medium">Booking Title</label>
           <input
             type="text"
             placeholder="Booking Title"
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             className="border border-gray-300 rounded p-2 w-full mb-3"
           />
 
           <label className="block mb-1 font-medium">Location *</label>
           <select
             value={location}
-            onChange={e => setLocation(e.target.value)}
+            onChange={(e) => setLocation(e.target.value)}
             className="border border-gray-300 rounded p-2 w-full mb-3"
           >
-            {LOCATIONS.map(loc => (
-              <option key={loc} value={loc}>{loc}</option>
+            {LOCATIONS.map((loc) => (
+              <option key={loc} value={loc}>
+                {loc}
+              </option>
             ))}
           </select>
 
           <label className="block mb-1 font-medium">Workspace *</label>
           <select
             value={workspace}
-            onChange={e => setWorkspace(e.target.value)}
+            onChange={(e) => setWorkspace(e.target.value)}
             className="border border-gray-300 rounded p-2 w-full mb-3"
           >
-            {WORKSPACES.map(ws => (
-              <option key={ws} value={ws}>{ws}</option>
+            {WORKSPACES.map((ws) => (
+              <option key={ws} value={ws}>
+                {ws}
+              </option>
             ))}
           </select>
 
@@ -104,7 +108,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAdd, onClose }) => {
           <input
             type="date"
             value={date}
-            onChange={e => setDate(e.target.value)}
+            onChange={(e) => setDate(e.target.value)}
             className="border border-gray-300 rounded p-2 w-full mb-3"
           />
 
@@ -114,7 +118,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAdd, onClose }) => {
               <input
                 type="time"
                 value={start}
-                onChange={e => setStart(e.target.value)}
+                onChange={(e) => setStart(e.target.value)}
                 className="border border-gray-300 rounded p-2 w-full mb-3"
               />
             </div>
@@ -123,28 +127,28 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onAdd, onClose }) => {
               <input
                 type="time"
                 value={end}
-                onChange={e => setEnd(e.target.value)}
+                onChange={(e) => setEnd(e.target.value)}
                 className="border border-gray-300 rounded p-2 w-full mb-3"
               />
             </div>
           </div>
         </div>
 
-        {/* Footer Buttons */}
+        {/* Footer Buttons with spacing and alignment */}
         <div className="flex justify-between mt-4">
-          <button className="px-3 py-2 border rounded text-gray-500 hover:bg-gray-100">
+          <button className="w-36 h-10 px-3 py-2 border rounded text-gray-500 hover:bg-gray-100">
             Change Booking Type
           </button>
-          <div>
+          <div className="flex space-x-2">
             <button
               onClick={() => onClose()}
-              className="px-3 py-2 border rounded mr-2 text-gray-700 hover:bg-gray-100"
+              className="w-36 h-10 px-3 py-2 border rounded text-gray-700 hover:bg-gray-100"
             >
               Cancel
             </button>
             <button
               onClick={submit}
-              className="px-4 py-2 bg-orange-500 text-white rounded font-medium hover:bg-orange-600"
+              className="w-36 h-10 px-4 py-2 bg-orange-500 text-white rounded font-medium hover:bg-orange-600"
             >
               Continue
             </button>

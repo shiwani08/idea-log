@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "../../components/navBar";
 import FaceCard from "../../components/faceCards";
 import Count from "../../components/count";

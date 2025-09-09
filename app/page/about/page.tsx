@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/app/components/navBar";
 
 export default function AboutPage() {

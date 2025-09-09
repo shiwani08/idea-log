@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import SignupPage from "../signupUI/page";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { PlayCircleOutlined, EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import {
+  PlayCircleOutlined,
+  EyeOutlined,
+  EyeInvisibleOutlined,
+} from "@ant-design/icons";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -45,7 +49,11 @@ export default function LoginPage() {
       console.log("Logged in user:", data.username);
 
       // you can store token or user data in state/localStorage
-      localStorage.setItem("accessToken", data.accessToken);
+      React.useEffect(() => {
+        if (data && data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+        }
+      }, [data]);
 
       alert("Logged in successful!!");
 
@@ -102,11 +110,14 @@ export default function LoginPage() {
                 onClick={togglePassword}
                 className="absolute inset-y-0 right-3 flex items-center text-gray-500"
               >
-                {showPassword ? <EyeOutlined size={18} /> : <EyeInvisibleOutlined size={18} />}
+                {showPassword ? (
+                  <EyeOutlined size={18} />
+                ) : (
+                  <EyeInvisibleOutlined size={18} />
+                )}
               </button>
             </div>
           </div>
-
 
           {/* Forgot Password */}
           <div className="text-right">
