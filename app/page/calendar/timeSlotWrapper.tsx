@@ -2,6 +2,7 @@
 
 import React from "react";
 import { EventType } from "./page";
+import { PlusOutlined } from "@ant-design/icons";
 
 interface TimeSlotWrapperProps {
   value: Date;
@@ -24,30 +25,34 @@ const TimeSlotWrapper: React.FC<TimeSlotWrapperProps> = ({
   );
 
   return (
-    <div style={{ position: "relative", height: "100%" }}>
-      {children}
-      {/* Show "+" button only if this is a grid slot and slot is free */}
-      {isGridSlot && !isSlotBusy && (
-        <button
-          onClick={() => openModal(value)}
-          aria-label="Add event"
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            background: "none",
-            border: "none",
-            color: "#444",
-            fontSize: 22,
-            cursor: "pointer",
-            zIndex: 5,
-          }}
-        >
-          +
-        </button>
-      )}
-    </div>
+    <div style={{ position: "relative", height: "100%", width: "100%" }}>
+  {children}
+
+  {isGridSlot && !isSlotBusy && (
+    <button
+      onClick={() => openModal(value)}
+      aria-label="Add event"
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "none",
+        border: "none",
+        color: "#444",
+        fontSize: 22,
+        cursor: "pointer",
+        zIndex: 5,
+      }}
+    >
+      <PlusOutlined />
+    </button>
+  )}
+</div>
+
   );
 };
 
