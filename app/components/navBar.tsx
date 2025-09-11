@@ -21,6 +21,9 @@ export default function Navbar() {
           <Link href="/page/calendar" className="text-gray-700 hover:text-blue-600">
             Calendar
           </Link>
+          <Link href="/page/animes" className="text-gray-700 hover:text-blue-600">
+            Animes
+          </Link>
         </div>
 
         {/* Example button (accessible) */}
