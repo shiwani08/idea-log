@@ -13,7 +13,7 @@ const menuItems = [
 export default function Sidebar() {
   return (
     <aside style={{ width: 220, background: "#fff" }}>
-      <div style={{ padding: 24, fontWeight: 700, fontSize: 22 }}>
+      <div style={{ padding: 24, fontWeight: 700, fontSize: 22, color: "black" }}>
         Simplified <Tag color="orange">SPACES</Tag>
       </div>
       <Menu mode="inline" defaultSelectedKeys={["1"]} items={menuItems} />

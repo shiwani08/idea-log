@@ -4,6 +4,7 @@ import { Layout, Row, Col } from "antd";
 import Sidebar from "../location/sidebar";
 import LocationCard from "../location/cards";
 import AddLocationCard from "../location/addLocation";
+import { Avatar } from "antd";
 
 const { Sider, Header, Content } = Layout;
 
@@ -62,16 +63,16 @@ export default function MainPage() {
         <Header
           style={{
             background: "#fff",
-            display: "flex",
-            alignItems: "center",
+            // display: "flex",
+            alignItems: "right",
             justifyContent: "space-between",
             padding: "0 32px",
           }}
         >
-          <span style={{ color: "#F00", fontWeight: 800, fontSize: 20 }}>
-            IN PROGRESS AND SUBJECT TO CHANGE
-          </span>
-          <div style={{ fontWeight: 700 }}>Hello, John Doe</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ fontWeight: 700 }}>Hello, John Doe</div>
+            <Avatar src="/images/user.png" size={40} />
+          </div>
         </Header>
         <Content style={{ padding: 40, background: "#f7f9fa" }}>
           <Row gutter={[16, 16]}>
